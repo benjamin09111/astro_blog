@@ -1,0 +1,26 @@
+---
+const posts = await Astro.glob("../pages/blogs/posts/*.md")
+
+const {mostrar} = Astro.props;
+
+---
+
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+    {
+        posts.slice(0, mostrar === 0 ? posts.length : mostrar).map(post => (
+            <div class="bg-white shadow rounded overflow-hidden pb-4 hover:shadow-lg transition-all 0.3s">
+                <a href={post.url}>
+                    <img  src={post.frontmatter.image} alt={post.frontmatter.title} />
+                    <div class="pt-8 px-6 flex flex-col gap-2">
+                        <p class="text-gray-500">{post.frontmatter.date}</p>
+                        <b class="text-xl">{post.frontmatter.title}</b>
+                        <p class="text-gray-800">{post.frontmatter.description.slice(0,80)}</p>
+                        <div class="text-gray-500 flex justify-end items-center w-full pt-4">
+                            {post.frontmatter.author}    
+                        </div>
+                    </div>
+                </a>
+            </div>
+        ))
+    }
+</section>

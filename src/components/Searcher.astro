@@ -1,0 +1,49 @@
+---
+const props = Astro.props
+---
+
+
+<form class="form flex justify-center mt-4 lg:mt-0 items-center">
+    <div class="container__search flex items-center justify-center px-2 bg-orange-500 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24" {...props}>
+            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+        </svg>
+    </div>
+    <input
+    class="p-2 focus:outline-none focus:bg-gray-50 text-gray-800"
+    type="search"
+    placeholder="Search..."
+    min="2"
+    max="24"
+    id="search"
+    required
+    >
+</form>
+
+<script>
+    import DOMPurify from "dompurify"
+    const form = document.querySelector("form");
+    form?.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const formData = new FormData(form);
+        const searchTerm = DOMPurify.sanitize(formData.get("search")?.toString());
+        if(!searchTerm || searchTerm.lenght === 0) return;
+        const url = new URL("/search", window.location.origin);
+        url.searchParams.set("q", searchTerm);
+        window.location.assign(url.toString)
+    })
+</script>
+
+<style>
+    input {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        height: 3rem;
+    }
+
+    .container__search {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        height: 3rem;
+    }
+</style>

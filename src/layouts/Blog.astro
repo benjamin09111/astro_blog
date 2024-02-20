@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string;
+}
+
+import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
+import "../index.css";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<ViewTransitions />
+	</head>
+	<body class="flex flex-col justify-center items-center">
+		<Navbar client:load />
+		<main class="flex my-6 flex-col w-1/2">
+            <slot />
+        </main>
+        <Footer />
+	</body>
+</html>

@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Blogs from "../../components/Blogs.astro";
+import Searcher from "../../components/Searcher.astro";
+---
+
+<Layout title="Blogs">
+    <main class="flex flex-col py-8 px-4 xl:px-56 md:px-28">
+        <h1 class="text-5xl">Blogs</h1>
+        <div class="flex w-full justify-center items-center my-4">
+            <Searcher />
+        </div>
+        <Blogs mostrar={0} />
+    </main>
+</Layout>

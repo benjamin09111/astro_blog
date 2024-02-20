@@ -1,0 +1,7 @@
+.form__container input, .form__container textarea {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+}
